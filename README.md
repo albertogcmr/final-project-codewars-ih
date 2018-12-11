@@ -14,11 +14,9 @@ Sistema de recomendación para recruiters obteniendo datos de webs como codewars
 
 ### 2.1 API codewars
 Sobre cada uno de los usuarios de la lista hacemos una petición a la API (https://dev.codewars.com/):  
-'''
-curl "https://www.codewars.com/api/v1/users/some_user"
-'''
+```$curl "https://www.codewars.com/api/v1/users/some_user"```
 Y obtenemos un json de la forma: 
-'''
+```
 {
     "username": "some_user",
     "name": "Some Person",
@@ -67,7 +65,7 @@ Y obtenemos un json de la forma:
         "totalCompleted": 230
     }
 }
-'''
+```
 De estos datos obtenemos sus skills y sus niveles en cada lenguaje. 
 ### 2.2 Web Scrapping codewars
 Sobre cada uno de los usuarios de la lista hacemos un web scrapping y obtenemos: 
