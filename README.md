@@ -80,7 +80,41 @@ NOTA: Se puede obtener para:
 * LinkedIn
 * StackOverflow
 
+### 2.3 Creación de DataFrame
+Hemos creado una función **get_row** cuya función es generar un diccionario a partir de un nombre de usuario haciendo uso de las funciones de las fases 2.1 y 2.2. 
+```
+def get_row(user): 
+    ''' 
+    Crea un diccionario con los datos recopilados que se puede
+    añadir como fila en nuestro dataframe de pandas
+    '''
+    user_json = get_user_api(user)
+    res = get_all_stats(user)
+    res.update(get_scores(user_json))
+    return res
+```
+### 2.4 Limpieza de datos
 
+En esta fase limpiamos columnas innecesarias
+
+## Fase 3: Persistencia de datos
+
+Hemos creado una función **get_row** cuya función es generar un diccionario a partir de un nombre de usuario haciendo uso de las funciones de las fases 2.1 y 2.2. 
+```
+def get_row(user): 
+    ''' 
+    Crea un diccionario con los datos recopilados que se puede
+    añadir como fila en nuestro dataframe de pandas
+    '''
+    user_json = get_user_api(user)
+    res = get_all_stats(user)
+    res.update(get_scores(user_json))
+    return res
+```
+Luego iteraremos por todo nuestro poll de usuarios obtenidos en la Fase 1 y crearemos un dataframe que guardaremos en un fichero CSV. 
+
+
+    
 
 
 
