@@ -73,3 +73,14 @@ Sobre cada uno de los usuarios de la lista hacemos un web scrapping y obtenemos:
 2. Enlace de Github (si lo tiene)
 3. Enlace de LinkedIn (si lo tiene)
 
+NOTA: Se puede obtener para: 
+* GitHub
+* Facebook
+* Tweeter
+* LinkedIn
+* StackOverflow
+
+
+
+
+
