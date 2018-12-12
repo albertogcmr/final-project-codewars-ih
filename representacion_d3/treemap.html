@@ -60,7 +60,9 @@ var svg = d3.select("#body").append("div")
   .append("svg:g")
     .attr("transform", "translate(.5,.5)");
 
-d3.json("flare.json", function(data) { // aquí está el archivo ///////////////////////////////
+// flare.json
+// lenguajes.json
+d3.json("lenguajes.json", function(data) { // aquí está el archivo /////////////////////////////// 
   node = root = data;
 
   var nodes = treemap.nodes(root)
