@@ -110,7 +110,9 @@ En esta fase limpiamos columnas innecesarias. Nos encontramos con más de 200 de
 * Las correspondientes a los lenguajes
 * allies, clan, comments, followers, following, highest trained, honor, kumite, last seen, leaderboard position, member since, total completed kata, total languages trained, username, github, skills, linkedin, 
 
+### 4.X Columna a columna
 
+Vamos limpiando columna a columna
 
 
     
