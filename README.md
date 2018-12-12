@@ -114,8 +114,14 @@ En esta fase limpiamos columnas innecesarias. Nos encontramos con más de 200 de
 
 Vamos limpiando columna a columna
 
+### 4.12 Guardamos los datos
+```
+df.to_csv('../output/dataframe-limpio3939x56.csv')
+``` 
 
-    
+## Fase 5: Análisis de datos
+
+En esta fase analizaremos los datos con las herramientas conocidas y provaremos diferentes sistemas de ML para clasificar. 
 
 
 
