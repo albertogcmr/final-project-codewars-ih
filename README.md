@@ -106,7 +106,9 @@ df = pd.read_csv('../output/df-codewars-2929x221.csv')
 
 ## Fase 4: Limpieza de datos
 
-En esta fase limpiamos columnas innecesarias. Nos encontramos con más de 150 de las que queremos guardar los scores en cada lenguaje y unos pocos datos de identificación de usuarios. 
+En esta fase limpiamos columnas innecesarias. Nos encontramos con más de 200 de las que queremos guardar los scores en cada lenguaje y unos pocos datos de identificación de usuarios. Columnas finales: 
+* Las correspondientes a los lenguajes
+* allies, clan, comments, followers, following, highest trained, honor, kumite, last seen, leaderboard position, member since, total completed kata, total languages trained, username, github, skills, linkedin, 
 
 
 
