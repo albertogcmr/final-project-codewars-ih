@@ -95,7 +95,7 @@ def get_row(user):
 ```
 ### 2.4 Limpieza de datos
 
-En esta fase limpiamos columnas innecesarias
+En esta fase limpiamos columnas innecesarias. Nos encontramos con más de 150 de las que queremos guardar los scores en cada lenguaje y unos pocos datos de identificación de usuarios. 
 
 ## Fase 3: Persistencia de datos
 
