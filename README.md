@@ -9,6 +9,7 @@ Sistema de recomendación para recruiters obteniendo datos de webs como codewars
 2. Haciendo web scrapping de cada usuario de la lista obtenemos sus contactos sociales (following, followers, allies)
 3. Añadimos estos nuevos contactos a muestra lista de usuarios de codewars. 
 4. Repetimos paso 2 y 3 hasta obtener un número de registros de +5000. 
+5. Alcanzamos los 11528 usuarios en solo 2 iteraciones: 500, 3939, 11528. 
 
 ## Fase 2: Obtención de datos de usuario
 
