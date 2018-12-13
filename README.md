@@ -11,10 +11,11 @@ Sistema de recomendación para recruiters obteniendo datos de webs como codewars
 4. Repetimos paso 2 y 3 hasta obtener un número de registros de +5000. 
 5. Alcanzamos los 11528 usuarios en solo 2 iteraciones: 500, 3939, 11528. 
 
-Tiempos: 
-iteración 1: 	500	0 ms
-iteración 2: 	3939	7642800.01 ms
-Iteración 3: 	11520	11027477.05 ms
+### Tiempos: 
+Iter	users	get_social
+1	500	0 ms
+2	3939	7642800.01 ms
+3	11520	11027477.05 ms
 
 ## Fase 2: Obtención de datos de usuario
 
@@ -103,10 +104,12 @@ def get_row(user):
 Luego iteraremos por todo nuestro poll de usuarios obtenidos en la Fase 1 y crearemos un dataframe que guardaremos en un fichero CSV.
 
 Tiempos: 
-Iteración	Num users	Tiempo TXT	Tiempo DF
-1 		500		0 ms		ms
-2 		3939		7642800.01 ms	9796075.92 msms
-3: 		11520		11027477.05 ms	ms
+
+### Tiempos: 
+Iter	users	get_social	get_row
+1	500	0 ms		??
+2	3939	7642800.01 ms	9796075.92 ms
+3	11520	11027477.05 ms	??
 
 ## Fase 3: Persistencia de datos
 
@@ -135,8 +138,11 @@ df.to_csv('../output/dataframe-limpio3939x56.csv')
 
 En esta fase analizaremos los datos con las herramientas conocidas y provaremos diferentes sistemas de ML para clasificar. 
 
+### 5.1 Correlación | Heatmap
 
+### 5.2 D3
 
+### 5.3 Unsupervised Learning
 
 
 
