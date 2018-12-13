@@ -12,10 +12,10 @@ Sistema de recomendación para recruiters obteniendo datos de webs como codewars
 5. Alcanzamos los 11528 usuarios en solo 2 iteraciones: 500, 3939, 11528. 
 
 ### Tiempos: 
-Iter	users	get_social
-1	500	0 ms
-2	3939	7642800.01 ms
-3	11520	11027477.05 ms
+Iter	users	timeit(ms)
+1	500	3847.40
+2	3939	7642800.01
+3	11520	11027477.05
 
 ## Fase 2: Obtención de datos de usuario
 
@@ -106,10 +106,12 @@ Luego iteraremos por todo nuestro poll de usuarios obtenidos en la Fase 1 y crea
 Tiempos: 
 
 ### Tiempos: 
-Iter	users	get_social	get_row
-1	500	0 ms		??
-2	3939	7642800.01 ms	9796075.92 ms
-3	11520	11027477.05 ms	??
+
+Iter	users	timeit(ms) social	timeit(ms) rows	
+1	500	3847.40
+2	3939	7642800.01		9796075.92
+3	11520	11027477.05		28818747.81
+
 
 ## Fase 3: Persistencia de datos
 
