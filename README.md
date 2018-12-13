@@ -11,10 +11,15 @@ Sistema de recomendación para recruiters obteniendo datos de webs como codewars
 4. Repetimos paso 2 y 3 hasta obtener un número de registros de +5000. 
 5. Alcanzamos los 11528 usuarios en solo 2 iteraciones: 500, 3939, 11528. 
 
+Tiempos: 
+iteración 1: 	500	0 ms
+iteración 2: 	3939	7642800.01 ms
+Iteración 3: 	11520	11027477.05 ms
+
 ## Fase 2: Obtención de datos de usuario
 
 ### 2.1 API codewars
-Sobre cada uno de los usuarios de la lista hacemos una petición a la API (https://dev.codewars.com/):  
+Sobre cada uno de los usuarios de la lista hacemos una petición a la API (https://dev.codewars.com/):
 ```$curl "https://www.codewars.com/api/v1/users/some_user"```
 Y obtenemos un json de la forma: 
 ```
@@ -96,6 +101,12 @@ def get_row(user):
     return res
 ```
 Luego iteraremos por todo nuestro poll de usuarios obtenidos en la Fase 1 y crearemos un dataframe que guardaremos en un fichero CSV.
+
+Tiempos: 
+Iteración	Num users	Tiempo TXT	Tiempo DF
+1 		500		0 ms		ms
+2 		3939		7642800.01 ms	9796075.92 msms
+3: 		11520		11027477.05 ms	ms
 
 ## Fase 3: Persistencia de datos
 

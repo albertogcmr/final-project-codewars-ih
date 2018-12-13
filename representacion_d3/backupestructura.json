@@ -1,0 +1,28 @@
+{
+     "name": "Lenguajes",
+     "children": [
+      {
+       "name": "Lenguajes",
+       "children": [
+        {
+         "name": "Lenguajes",
+         "children": [
+          {"name": "java", "size": 5}, 
+          {"name": "C", "size": 4}, 
+          {"name": "javascript", "size": 4}, 
+          {"name": "C#", "size": 2}, 
+          {"name": "Fortran", "size": 3}, 
+          {"name": "Python", "size": 10}, 
+          {"name": "SQL", "size": 5}, 
+          {"name": "R", "size": 5}, 
+          {"name": "php", "size": 2}, 
+          {"name": "Typeform", "size": 1}, 
+          {"name": "Otro", "size": 4}, 
+          {"name": "Alguno más", "size": 5}
+         ]
+        }
+      ]
+    }
+  ]
+}
+    

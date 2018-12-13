@@ -78,7 +78,8 @@ d3.json("lenguajes.json", function(data) { // aquí está el archivo ///////////
   cell.append("svg:rect")
       .attr("width", function(d) { return d.dx - 1; })
       .attr("height", function(d) { return d.dy - 1; })
-      .style("fill", function(d) { return color(d.parent.name); });
+      .style("fill", function(d) { return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255) }); // colores 
+      //.style("fill", function(d) { return d3.rgb(Math.random()*255, Math.random()*255, Math.random()*255) }); // colores 
 
   cell.append("svg:text")
       .attr("x", function(d) { return d.dx / 2; })
