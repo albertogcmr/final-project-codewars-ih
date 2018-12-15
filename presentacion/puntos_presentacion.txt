@@ -1,0 +1,35 @@
+Para las presentaciones dispondréis de *6 minutos y medio* que podéis distribuir como queráis.
+Presentareis con vuestro propio ordenador, podeis usar el mio si es necesario.
+Os detallo los slides mínimos que obligatoriamente debeis incluir en la presentación final
+
+1. [Describe tu dataset. Origen del dataset, ámbito, formato, numero de registros, distribución de los datos y tipo de los mismos, etc.]
+2. [Data cleaning and wrangling]
+3. [¿Cual es el mayor reto por solucionar en nuestro código?]
+4. [Resultados Supervised/Unsupervised learning]
+5. [¿Cuál ha sido el mayor problema al que nos hemos enfrentado?]
+6. [Conclusión final de los resultados obtenidos]
+7. [Si empezara de cero ¿Cómo enfocaría o organizaría el proyecto?]
+8. [Enseña tu código en github: Un detalle técnico interesante] (tened la pestaña de github abierta previamente)
+
+El orden de presentación es el siguiente:
+
+*--- ( 15:00h Internal Hackshow) ---*
+*1*: CONSTAN - (aprox 15:30)
+*2*: MIRIAM - (aprox 15:40)
+*3*: ALBERTO G. - (aprox 15:50)
+*4*: ALBERTO C. - (aprox 16:00)
+*5*: IVAN - (aprox 16:10)
+*6*: ELENA - (aprox 16:20)
+*7*: PABLO - (aprox 16:30)
+*8*: ARI - (aprox 16:40)
+*9*: CRISTINA - (aprox 16:50)
+*--- ( 17:00h - Votaciones 2 representantes hackshow) ---*
+*--- ( 17:30h - Hadoop Workshop ) ---*
+
+
+# colores
+
+node_color='#01579B', edge_color='#039BE5'
+colors=['#336b87', '#90afc5']
+let myColors = ['#E0F2F1', '#B2DFDB', '#80CBC4', '#4DB6AC', '#26A69A', '#009688', '#00897B', '#00796B', '#00695C', '#A7FFEB', '#64FFDA', '#1DE9B6', '#00BFA5'] // lista de colores random en hex
+
