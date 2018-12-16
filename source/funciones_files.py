@@ -36,3 +36,13 @@ def ask_tags_comma_separated(message='Introduce los elementos separados por coma
         except: 
             print('Fallo en la captura de requisitos. Inténtalo de nuevo')
     return res
+
+def ask_user_and_grade(): 
+    while True: 
+        try: 
+            user = input('Introduce nombre de usuario: ')
+            grados = int(input('Introduce numero de saltos: '))
+            break
+        except: 
+            print('Fallo en la captura de requisitos. Inténtalo de nuevo')
+    return user, grados
