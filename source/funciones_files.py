@@ -26,3 +26,13 @@ def load_set_users(filename='../output/codewars-users.txt'):
         users = f.readlines()
     return {user.strip() for user in users}
 # len(load_set_users())
+
+def ask_tags_comma_separated(message='Introduce los elementos separados por coma:'): 
+    while True: 
+        try: 
+            res = input(message).lower().split(',')
+            res = [r.strip() for r in res]
+            break
+        except: 
+            print('Fallo en la captura de requisitos. Inténtalo de nuevo')
+    return res
