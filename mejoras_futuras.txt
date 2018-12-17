@@ -1,0 +1,7 @@
+explicar qué es codewars y que se pretende mejorar con la incorporación de github y linkedin. 
+incorporar al pdf las capturas de pantalla. 
+no usar verde que no se ve en el proyector. 
+node_size en función del score
+node_color en función de los grados de separación
+incoporar los nombres al grafo. 
+
