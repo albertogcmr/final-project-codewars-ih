@@ -7,21 +7,39 @@ from bs4 import BeautifulSoup
 
 URL_WEB = 'https://www.codewars.com/users/{}'
 
+
 class CWScraper: 
     def __init__(self, user): 
         self.user = user
-        self.data = {}
+        self.stats = {}
         self.social = {
             'following': [], 
             'followers': [], 
             'allies': []
         }
 
-    def set_data(self): 
+    def set_stats(self): 
         url = URL_WEB.format(self.user)
         html = requests.get(url).content
-        soup = BeautifulSoup(html, "lxml")
-        print(soup)
+        soup = BeautifulSoup(html, "html.parser")
+        x = {}
+        for s in soup.select('.stat-box div'): 
+            # print(s)
+            if s.text.split(':')[0] != 'Profiles': 
+                x[s.text.split(':')[0].lower()] = s.text.split(':')[1]
+            else: 
+                try: 
+                    # print('-----------------------------------')
+                    # print(s.find_all('a', href=True))
+                    for e in s.find_all('a', href=True): 
+                        if 'github' in e['href']: 
+                            x['github'] = e['href']
+                        if 'linkedin' in e['href']: 
+                            x['linkedin'] = e['href']
+                except: 
+                    x['github'] = ''
+                    x['linkedin'] = ''
+        self.stats = x
 
     def set_social_15(self):  # Le falta selenium
         for network in self.social.keys(): 
@@ -34,6 +52,7 @@ class CWScraper:
 if __name__ == '__main__': 
     user = 'albertogcmr'
     s = CWScraper(user)
-    s.set_data()
-    s.set_social_15()
-    print(s.social)
+    s.set_stats()
+    print(s.stats)
+    # s.set_social_15()
+    # print(s.social)
