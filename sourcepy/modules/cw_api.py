@@ -11,22 +11,22 @@ from languages import get_languages
 URL_API = "https://www.codewars.com/api/v1/users/{}"
 
 # hacer global
-VALID_LANGUAGES = get_languages() 
 
 
 
 
 class CWApi: 
-    def __init__(self, user): 
+    def __init__(self, user, valid_languages): 
         self.user = user
         self.scores = {}
+        self.valid_languages = valid_languages
         
     def set_scores(self): 
         res = {}
         url = URL_API.format(self.user)
         dictionary = requests.get(url).json()
 
-        for lang in VALID_LANGUAGES: 
+        for lang in self.valid_languages: 
             try: 
                 score = dictionary['ranks']['languages'][lang]['score']
             except: 
@@ -40,7 +40,7 @@ class CWApi:
 
 if __name__ == '__main__': 
     user = 'albertogcmr'
-    api = CWApi(user)
+    api = CWApi(user, get_languages())
     # df = api.get_df()
     # print(df)
     api.set_scores()
