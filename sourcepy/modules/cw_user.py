@@ -1,7 +1,6 @@
 from cw_api import CWApi
 from cw_scrapin import CWScraper
 
-from languages import get_languages
 
 
 class CWUser(CWApi, CWScraper): 
@@ -18,6 +17,7 @@ class CWUser(CWApi, CWScraper):
         self.set_social_15()
         self.all_data.update(self.scores)
         self.all_data.update(self.stats) 
+        self.all_data.update({'social': self.get_all_social()})
 
     def get_all_social(self): 
         res = set()
@@ -32,6 +32,8 @@ class CWUser(CWApi, CWScraper):
 
 
 if __name__ == '__main__': 
+    from languages import get_languages
+
     user = 'albertogcmr'
     cwuser = CWUser(user, get_languages())
     cwuser.set_user_data()
