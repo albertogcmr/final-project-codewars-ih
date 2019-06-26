@@ -6,6 +6,7 @@ import os
 from cw_user import CWUser
 from leaders import get_leaderboard_users
 from languages import get_languages
+from func_set import string2set
 
 
 VALID_LANGUAGES = get_languages()
@@ -21,8 +22,8 @@ class CWData:
         self.seed_path = seed_path
         self.max_users = max_users # max users registered until break the scanning
 
-        self.set_users_checked(self.seed_path)
         self.set_cwuser_list(self.seed_path)
+        self.set_users_checked(self.seed_path)
         self.set_users_to_check(self.seed_path)
 
 
@@ -58,12 +59,15 @@ class CWData:
         if os.path.isfile(seed_path): 
             df = pd.read_csv(seed_path)
             self.cwuser_list.extend(df.to_dict(orient='records'))
+            print(self.cwuser_list[0].get('social'))
+            print(type(self.cwuser_list[0].get('social')))
         
     def set_users_to_check(self, seed_path='./output/codewar_users.csv'): 
         self.users_to_check = self.users_seed - self.users_checked
         if os.path.isfile(seed_path): 
             df = pd.read_csv(seed_path)
-            x = df.social
+            for elem in df.social: 
+                self.users_to_check = self.users_to_check - string2set(elem)
             print(type(x[0])) # modificar
             print(x[0]) # modificar
 
