@@ -11,7 +11,7 @@ class CWUser(CWApi, CWScraper):
 
         self.all_data = {'user': self.user}
 
-    def set_user_data(self): 
+    def scan(self): 
         self.set_scores()
         self.set_stats()
         self.set_social_15()
@@ -26,9 +26,7 @@ class CWUser(CWApi, CWScraper):
         return res
 
     def __repr__(self): 
-        return str(self.all_data)
-
-    
+        return str(self.all_data)    
 
 
 if __name__ == '__main__': 
@@ -36,11 +34,12 @@ if __name__ == '__main__':
 
     user = 'albertogcmr'
     cwuser = CWUser(user, get_languages())
-    cwuser.set_user_data()
-    print(cwuser.all_data)
+    cwuser.scan()
+    #print(cwuser.all_data)
     for k, v in cwuser.all_data.items(): 
+        pass
         print(k, v)
-    print(cwuser.social)
+    #print(cwuser.social)
 
 
 

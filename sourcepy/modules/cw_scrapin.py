@@ -22,10 +22,11 @@ class CWScraper:
         url = URL_WEB.format(self.user)
         html = requests.get(url).content
         soup = BeautifulSoup(html, "html.parser")
-        x = {}
+        x = dict()
         for s in soup.select('.stat-box div'): 
-            # print(s)
+
             if s.text.split(':')[0] != 'Profiles': 
+                # print(s.text)
                 x[s.text.split(':')[0].lower()] = s.text.split(':')[1]
             else: 
                 try: 

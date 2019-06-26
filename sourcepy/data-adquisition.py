@@ -24,6 +24,20 @@ def main():
     print((top500))
     print(VALID_LANGUAGES)
 
+    ''' Añadir esto a las clases, un método que las inicialice y las ponga en marcha tras el __init__
+    import pandas as pd
+
+class Extractor:
+    def Extract(self):
+        pass
+
+class ExtractRings(Extractor):
+    #Extrae las mediciones de los añillos del archivo con los datos en bruto.
+    def Extract(self,path,encoding):
+        df_tree_rings=pd.read_csv(path,encoding=encoding)
+return df_tree_rings
+    '''
+
 
 if __name__ == "__main__":
     main()

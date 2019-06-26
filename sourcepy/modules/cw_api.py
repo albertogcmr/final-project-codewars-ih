@@ -18,24 +18,17 @@ URL_API = "https://www.codewars.com/api/v1/users/{}"
 class CWApi: 
     def __init__(self, user, valid_languages): 
         self.user = user
-        self.scores = {}
+        self.scores = dict()
         self.valid_languages = valid_languages
         
     def set_scores(self): 
-        res = {}
         url = URL_API.format(self.user)
         dictionary = requests.get(url).json()
+        scores_lang = dictionary.get('ranks').get('languages')
 
-        for lang in self.valid_languages: 
-            try: 
-                score = dictionary['ranks']['languages'][lang]['score']
-            except: 
-                score = 0
-            else: 
-                pass
-            finally: 
-                res[lang] = score
-        self.scores.update(res)
+        # for lang in self.valid_languages: 
+        for lang, score in scores_lang.items(): 
+            self.scores.update({lang: score.get('score', 0)})
 
 
 if __name__ == '__main__': 
