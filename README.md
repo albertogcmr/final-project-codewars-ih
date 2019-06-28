@@ -148,4 +148,5 @@ En esta fase analizaremos los datos con las herramientas conocidas y provaremos 
 
 ### Mejoras y seguiento
 https://github.com/Mihlos/api-heroku
+poner __init__.py en todas las carpetas con código para que se puedan comunicar las partes
 

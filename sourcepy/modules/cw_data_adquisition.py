@@ -21,9 +21,9 @@ class CWData:
         self.seed_path = seed_path
         self.max_users = max_users # max users registered until break the scanning
 
-        self.set_cwuser_list(self.seed_path)
-        self.set_users_checked(self.seed_path)
-        self.set_users_to_check(self.seed_path)
+        self.set_cwuser_list()
+        self.set_users_checked()
+        self.set_users_to_check()
 
 
     def is_complete(self): 
@@ -43,25 +43,25 @@ class CWData:
         self.cwuser_list.append(cwuser.all_data)
 
     def get_dataframe(self): 
-        return pd.DataFrame(self.cwuser_list)
+        pass 
 
-    def save_dataframe(self, path='./output/codewar_users.csv'): 
-        self.get_dataframe().to_csv(path)
+    def save_dataframe(self): 
+        pd.DataFrame(self.cwuser_list).to_csv(self.seed_path, header=True)
 
-    def set_users_checked(self, seed_path='./output/codewar_users.csv'): 
-        if os.path.isfile(seed_path): 
-            df = pd.read_csv(seed_path)
+    def set_users_checked(self): 
+        if os.path.isfile(self.seed_path): 
+            df = pd.read_csv(self.seed_path)
             self.users_checked.update(list(df.user))
 
-    def set_cwuser_list(self, seed_path='./output/codewar_users.csv'): 
-        if os.path.isfile(seed_path): 
-            df = pd.read_csv(seed_path)
+    def set_cwuser_list(self): 
+        if os.path.isfile(self.seed_path): 
+            df = pd.read_csv(self.seed_path, index_col=0)
             self.cwuser_list.extend(df.to_dict(orient='records'))
         
-    def set_users_to_check(self, seed_path='./output/codewar_users.csv'): 
+    def set_users_to_check(self): 
         self.users_to_check = self.users_seed - self.users_checked
-        if os.path.isfile(seed_path): 
-            df = pd.read_csv(seed_path)
+        if os.path.isfile(self.seed_path): 
+            df = pd.read_csv(self.seed_path)
             for elem in df.social: 
                 self.users_to_check = self.users_to_check - string2set(elem)
 
@@ -73,7 +73,8 @@ if __name__ == '__main__':
     from leaders import get_leaderboard_users
     
     seed = get_leaderboard_users()
-    data = CWData(users_seed=seed, max_users=13)
+    data = CWData(users_seed=seed, max_users=3)
+    data.users_checked
     print(len(data.users_seed))
     print(len(data.users_checked))
     print(len(data.users_to_check))
