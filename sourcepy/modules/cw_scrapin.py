@@ -1,10 +1,8 @@
 # imports
-
 import requests
 from bs4 import BeautifulSoup
 
 # # Variables
-
 URL_WEB = 'https://www.codewars.com/users/{}'
 
 
@@ -26,12 +24,9 @@ class CWScraper:
         for s in soup.select('.stat-box div'): 
 
             if s.text.split(':')[0] != 'Profiles': 
-                # print(s.text)
                 x[s.text.split(':')[0].lower()] = s.text.split(':')[1]
             else: 
                 try: 
-                    # print('-----------------------------------')
-                    # print(s.find_all('a', href=True))
                     for e in s.find_all('a', href=True): 
                         if 'github' in e['href']: 
                             x['github'] = e['href']
@@ -54,8 +49,8 @@ if __name__ == '__main__':
     user = 'albertogcmr'
     s = CWScraper(user)
     s.set_stats()
-    print(s.stats)
+    print('stats:', s.stats, end='\n\n')
     s.set_social_15()
-    print(s.social)
-    print(s.stats)
+    print('social:', s.social, end='\n\n')
+    print('stats:', s.stats, end='\n\n')
 

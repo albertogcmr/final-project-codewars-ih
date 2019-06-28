@@ -1,6 +1,7 @@
-from modules.cw_api import CWApi
-from modules.cw_scrapin import CWScraper
-
+# imports
+# import requests
+from .cw_api import CWApi
+from .cw_scrapin import CWScraper
 
 
 class CWUser(CWApi, CWScraper): 
@@ -30,16 +31,12 @@ class CWUser(CWApi, CWScraper):
 
 
 if __name__ == '__main__': 
-    from languages import get_languages
 
     user = 'albertogcmr'
-    cwuser = CWUser(user) #, get_languages())
+    cwuser = CWUser(user) 
     cwuser.scan()
-    #print(cwuser.all_data)
-    for k, v in cwuser.all_data.items(): 
-        pass
-        print(k, v)
-    #print(cwuser.social)
+
+    print(cwuser.all_data.items())
 
 
 
