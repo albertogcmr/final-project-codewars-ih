@@ -55,5 +55,7 @@ if __name__ == '__main__':
     s = CWScraper(user)
     s.set_stats()
     print(s.stats)
-    # s.set_social_15()
-    # print(s.social)
+    s.set_social_15()
+    print(s.social)
+    print(s.stats)
+

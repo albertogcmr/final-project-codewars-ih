@@ -3,15 +3,17 @@
 import pandas as pd
 import os
 
-from cw_user import CWUser
-from leaders import get_leaderboard_users
-from languages import get_languages
-from func_set import string2set
+from modules.cw_user import CWUser
+# from languages import get_languages
+from modules.func_set import string2set
+# from modules.chosing_functions import display_presenter_last_kata
 
 
-VALID_LANGUAGES = get_languages()
+
+# VALID_LANGUAGES = get_languages()
 
 class CWData: 
+
     def __init__(self, users_seed=set(), seed_path='./output/codewar_users.csv', max_users=50): 
         # self.max_iterations = max_iterations # add parameter: self.max_iterations=2
         self.cwuser_list = list() # list of dictionaries
@@ -35,7 +37,7 @@ class CWData:
 
     def scan_all(self): 
         user = self.users_to_check.pop()
-        cwuser = CWUser(user, VALID_LANGUAGES)
+        cwuser = CWUser(user) # , VALID_LANGUAGES)
         cwuser.scan()
 
         self.users_checked.add(user)
@@ -59,8 +61,8 @@ class CWData:
         if os.path.isfile(seed_path): 
             df = pd.read_csv(seed_path)
             self.cwuser_list.extend(df.to_dict(orient='records'))
-            print(self.cwuser_list[0].get('social'))
-            print(type(self.cwuser_list[0].get('social')))
+            # print(self.cwuser_list[0].get('social'))
+            # print(type(self.cwuser_list[0].get('social')))
         
     def set_users_to_check(self, seed_path='./output/codewar_users.csv'): 
         self.users_to_check = self.users_seed - self.users_checked
@@ -68,12 +70,13 @@ class CWData:
             df = pd.read_csv(seed_path)
             for elem in df.social: 
                 self.users_to_check = self.users_to_check - string2set(elem)
-            print(type(x[0])) # modificar
-            print(x[0]) # modificar
+
 
 
 
 if __name__ == '__main__': 
+    from leaders import get_leaderboard_users
+
     seed = get_leaderboard_users()
     data = CWData(users_seed=seed, max_users=20)
     print(len(data.users_seed))

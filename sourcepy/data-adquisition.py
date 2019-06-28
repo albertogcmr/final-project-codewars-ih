@@ -4,15 +4,16 @@
 
 # imports 
 
+# from modules import adquire, cleaning, create_df_checking, outputs # example 
 from modules.leaders import get_leaderboard_users
-from modules.languages import get_languages
+from modules.cw_data_adquisition import CWData
 
 
 # from funciones_tiempo import timeit
 
-MAX_ITERATIONS = 2
-MAX_USERS = 3000 # modificar
-VALID_LANGUAGES = get_languages()
+# MAX_ITERATIONS = 2
+# VALID_LANGUAGES = get_languages()
+MAX_USERS = 10 # modificar
 
 # pd.options.display.max_columns = None
 
@@ -21,22 +22,12 @@ VALID_LANGUAGES = get_languages()
 
 def main(): 
     top500 = get_leaderboard_users()
-    print((top500))
-    print(VALID_LANGUAGES)
-
-    ''' Añadir esto a las clases, un método que las inicialice y las ponga en marcha tras el __init__
-    import pandas as pd
-
-class Extractor:
-    def Extract(self):
-        pass
-
-class ExtractRings(Extractor):
-    #Extrae las mediciones de los añillos del archivo con los datos en bruto.
-    def Extract(self,path,encoding):
-        df_tree_rings=pd.read_csv(path,encoding=encoding)
-return df_tree_rings
-    '''
+    print(top500)
+    cwd = CWData()
+    cwd = CWData(users_seed=top500, seed_path='./output/codewar_users.csv', max_users=MAX_USERS)
+    # cw.save_dataframe()
+    # print((top500))
+    # print(VALID_LANGUAGES)
 
 
 if __name__ == "__main__":

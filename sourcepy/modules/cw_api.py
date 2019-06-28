@@ -4,7 +4,7 @@ import requests
 import json
 import pandas as pd
 
-from languages import get_languages
+from modules.languages import get_languages
 
 # Variables
 
@@ -16,10 +16,10 @@ URL_API = "https://www.codewars.com/api/v1/users/{}"
 
 
 class CWApi: 
-    def __init__(self, user, valid_languages): 
+    def __init__(self, user): # , valid_languages): 
         self.user = user
         self.scores = dict()
-        self.valid_languages = valid_languages
+        # self.valid_languages = valid_languages
         
     def set_scores(self): 
         url = URL_API.format(self.user)
@@ -33,7 +33,7 @@ class CWApi:
 
 if __name__ == '__main__': 
     user = 'albertogcmr'
-    api = CWApi(user, get_languages())
+    api = CWApi(user) # , get_languages())
     # df = api.get_df()
     # print(df)
     api.set_scores()
