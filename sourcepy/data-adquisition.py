@@ -3,7 +3,8 @@ from modules.leaders import get_leaderboard_users
 from modules.cw_data_adquisition import CWData
 
 # variables
-MAX_USERS = 4 # modificar
+MAX_USERS = 101 # modificar
+OUTPUT_FILE_PATH = './output/codewar_users.csv'
 
 
 def scan(users_seed=get_leaderboard_users(), 
@@ -19,7 +20,8 @@ def scan(users_seed=get_leaderboard_users(),
 
 
 def main(): 
-    scan(users_seed=get_leaderboard_users(), seed_path='./output/codewar_users.csv', max_users=MAX_USERS)
+    top500 = get_leaderboard_users()
+    scan(users_seed=top500, seed_path=OUTPUT_FILE_PATH, max_users=MAX_USERS)
 
 
 if __name__ == "__main__":
