@@ -31,18 +31,18 @@ class CWData:
         user = self.users_to_check.pop()
         cwuser = CWUser(user)
         cwuser.scan()
+        social_users = cwuser.get_all_social()
 
         self.users_checked.add(user)
-        social_users = cwuser.get_all_social()
-        self.users_to_check.union(social_users)
+        self.users_to_check = self.users_to_check.union(social_users)
         self.cwuser_list.append(cwuser.all_data)
-
+    '''
     def get_dataframe(self): 
-        pass 
-
+        return pd.DataFrame(self.cwuser_list) 
+    '''
     def save_dataframe(self): 
         pd.DataFrame(self.cwuser_list).to_csv(self.seed_path, header=True)
-
+    '''
     def set_users_checked(self): 
         if os.path.isfile(self.seed_path): 
             df = pd.read_csv(self.seed_path)
@@ -59,6 +59,7 @@ class CWData:
             df = pd.read_csv(self.seed_path)
             for elem in df.social: 
                 self.users_to_check = self.users_to_check - string2set(elem)
+    '''
 
     def set_actual_state(self): 
         if os.path.isfile(self.seed_path): 
