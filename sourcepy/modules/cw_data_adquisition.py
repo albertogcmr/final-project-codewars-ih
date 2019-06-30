@@ -1,18 +1,12 @@
 # imports
-
 import pandas as pd
 import os
 from .func_set import string2set
-# from cw_api import CWApi
-# from cw_scrapin import CWScraper
 from .cw_user import CWUser
 
-# VALID_LANGUAGES = get_languages()
 
 class CWData: 
-
     def __init__(self, users_seed=set(), seed_path='./output/codewar_users.csv', max_users=50): 
-        # self.max_iterations = max_iterations # add parameter: self.max_iterations=2
         self.cwuser_list = list() # list of dictionaries
         self.users_checked = set()
         self.users_to_check = set()
@@ -21,15 +15,16 @@ class CWData:
         self.seed_path = seed_path
         self.max_users = max_users # max users registered until break the scanning
 
+        self.set_actual_state() # actualize: self.cwuser_list, self.users_checked, self.users_to_check
+        '''
         self.set_cwuser_list()
         self.set_users_checked()
         self.set_users_to_check()
+        '''
 
 
     def is_complete(self): 
         """ Is complete if iterations or users has exceded expectations """
-        # iters = self.iterations >= self.max_iterations
-        # return iters or users
         return len( self.cwuser_list) >= self.max_users
 
     def scan_next(self): 
@@ -65,7 +60,16 @@ class CWData:
             for elem in df.social: 
                 self.users_to_check = self.users_to_check - string2set(elem)
 
-
+    def set_actual_state(self): 
+        if os.path.isfile(self.seed_path): 
+            df = pd.read_csv(self.seed_path, index_col=0)         # create DF
+            self.cwuser_list.extend(df.to_dict(orient='records')) # get dict from DF
+            self.users_checked.update(list(df.user))              # update users_checked from DF
+            self.users_to_check = self.users_seed - self.users_checked   # update users_to_check from previous data
+            for elem in df.social: 
+                self.users_to_check = self.users_to_check - string2set(elem)
+        else: 
+            self.users_to_check = self.users_seed - self.users_checked
 
 
 if __name__ == '__main__': 
@@ -78,9 +82,6 @@ if __name__ == '__main__':
     print(len(data.users_seed))
     print(len(data.users_checked))
     print(len(data.users_to_check))
-
-    
-    # data.set_seed()
     
     while not data.is_complete(): 
         data.scan_next()

@@ -1,13 +1,12 @@
 # imports
-# import requests
 from .cw_api import CWApi
 from .cw_scrapin import CWScraper
 
 
 class CWUser(CWApi, CWScraper): 
-    def __init__(self, user): #, valid_languages): 
+    def __init__(self, user): 
         self.user = user
-        CWApi.__init__(self, self.user) # , valid_languages)
+        CWApi.__init__(self, self.user) 
         CWScraper.__init__(self, self.user)
 
         self.all_data = {'user': self.user}
