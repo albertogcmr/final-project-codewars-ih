@@ -25,7 +25,7 @@ class CWData:
 
     def is_complete(self): 
         """ Is complete if iterations or users has exceded expectations """
-        return len( self.cwuser_list) >= self.max_users
+        return len( self.users_checked) >= self.max_users
 
     def scan_next(self): 
         user = self.users_to_check.pop()
@@ -34,7 +34,7 @@ class CWData:
         social_users = cwuser.get_all_social()
 
         self.users_checked.add(user)
-        self.users_to_check = self.users_to_check.union(social_users)
+        self.users_to_check = self.users_to_check.union(social_users) - self.users_checked
         self.cwuser_list.append(cwuser.all_data)
     '''
     def get_dataframe(self): 
@@ -62,16 +62,17 @@ class CWData:
     '''
 
     def set_actual_state(self): 
+        self.users_to_check = self.users_seed
         if os.path.isfile(self.seed_path): 
             df = pd.read_csv(self.seed_path, index_col=0)         # create DF
             self.cwuser_list.extend(df.to_dict(orient='records')) # get dict from DF
             self.users_checked.update(list(df.user))              # update users_checked from DF
-            self.users_to_check = self.users_seed - self.users_checked   # update users_to_check from previous data
             for elem in df.social: 
-                self.users_to_check = self.users_to_check - string2set(elem)
-        else: 
-            self.users_to_check = self.users_seed - self.users_checked
+                self.users_to_check = self.users_to_check.union(string2set(elem))
+            self.users_to_check = self.users_to_check - self.users_checked   # update users_to_check from previous data
 
+        else: 
+            self.users_to_check = self.users_seed
 
 if __name__ == '__main__': 
 
