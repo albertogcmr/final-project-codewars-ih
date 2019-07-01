@@ -25,7 +25,7 @@ class CWData:
 
     def is_complete(self): 
         """ Is complete if iterations or users has exceded expectations """
-        return len( self.users_checked) >= self.max_users
+        return len(self.users_checked) >= self.max_users
 
     def scan_next(self): 
         user = self.users_to_check.pop()

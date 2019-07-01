@@ -3,7 +3,7 @@ from modules.leaders import get_leaderboard_users
 from modules.cw_data_adquisition import CWData
 
 # variables
-MAX_USERS = 2500 # modificar
+MAX_USERS = 7500 # modificar
 OUTPUT_FILE_PATH = './output/codewar_users.csv'
 
 
@@ -19,6 +19,10 @@ def scan(users_seed=get_leaderboard_users(),
             print('ha fallado')
         else: 
             print(len(data.users_checked), len(data.users_seed), len(data.users_to_check))
+        finally: 
+            if len(data.users_checked) % 100 == 0: 
+                data.save_dataframe()
+                print('salvado DF')
     data.save_dataframe()
     
 
