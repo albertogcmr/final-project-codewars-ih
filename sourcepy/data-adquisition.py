@@ -3,7 +3,7 @@ from modules.leaders import get_leaderboard_users
 from modules.cw_data_adquisition import CWData
 
 # variables
-MAX_USERS = 7500 # modificar
+MAX_USERS = 8000 # modificar
 OUTPUT_FILE_PATH = './output/codewar_users.csv'
 
 
