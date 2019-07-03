@@ -16,16 +16,17 @@ class CWData:
         self.max_users = max_users # max users registered until break the scanning
 
         self.set_actual_state() # actualize: self.cwuser_list, self.users_checked, self.users_to_check
-        '''
-        self.set_cwuser_list()
-        self.set_users_checked()
-        self.set_users_to_check()
-        '''
 
 
     def is_complete(self): 
-        """ Is complete if iterations or users has exceded expectations """
-        return len(self.users_checked) >= self.max_users
+        """ Is complete if users has exceded expectations or has no more users in queue """
+        users_limit = len(self.users_checked) >= self.max_users
+        social_limit = len(self.users_to_check) <= 0
+        if users_limit: 
+            print('users_limit: Max users scanned')
+        elif social_limit: 
+            print('social_limit: No more users to scan')
+        return users_limit or social_limit
 
     def scan_next(self): 
         user = self.users_to_check.pop()
@@ -36,30 +37,10 @@ class CWData:
         self.users_checked.add(user)
         self.users_to_check = self.users_to_check.union(social_users) - self.users_checked
         self.cwuser_list.append(cwuser.all_data)
-    '''
-    def get_dataframe(self): 
-        return pd.DataFrame(self.cwuser_list) 
-    '''
+    
     def save_dataframe(self): 
         pd.DataFrame(self.cwuser_list).to_csv(self.seed_path, header=True)
-    '''
-    def set_users_checked(self): 
-        if os.path.isfile(self.seed_path): 
-            df = pd.read_csv(self.seed_path)
-            self.users_checked.update(list(df.user))
-
-    def set_cwuser_list(self): 
-        if os.path.isfile(self.seed_path): 
-            df = pd.read_csv(self.seed_path, index_col=0)
-            self.cwuser_list.extend(df.to_dict(orient='records'))
-        
-    def set_users_to_check(self): 
-        self.users_to_check = self.users_seed - self.users_checked
-        if os.path.isfile(self.seed_path): 
-            df = pd.read_csv(self.seed_path)
-            for elem in df.social: 
-                self.users_to_check = self.users_to_check - string2set(elem)
-    '''
+    
 
     def set_actual_state(self): 
         self.users_to_check = self.users_seed
@@ -70,7 +51,6 @@ class CWData:
             for elem in df.social: 
                 self.users_to_check = self.users_to_check.union(string2set(elem))
             self.users_to_check = self.users_to_check - self.users_checked   # update users_to_check from previous data
-
         else: 
             self.users_to_check = self.users_seed
 
