@@ -21,5 +21,6 @@ class Leaderboard:
     def get_top(self): 
         """ Set self.top from leaderboard """
         html = requests.get(self.url).content
-        soup = BeautifulSoup(html, "lxml")
+        soup = BeautifulSoup(html, "lxml")                  # probar a cambiarlo
+        # soup = BeautifulSoup(html, "parse.html")
         self.top = {e.text for e in soup.select('tr a')}
