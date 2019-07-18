@@ -19,6 +19,12 @@ Iter	users	timeit(ms)
 
 ## Fase 2: Obtención de datos de usuario
 
+Ejecutamos la siguiente linea de comandos: 
+```console
+$ python3 sourcepy/data-adquisition.py
+```
+Cada 100 usuarios se persisten los datos. 
+
 ### 2.1 API codewars
 Sobre cada uno de los usuarios de la lista hacemos una petición a la API (https://dev.codewars.com/):
 ```$curl "https://www.codewars.com/api/v1/users/some_user"```

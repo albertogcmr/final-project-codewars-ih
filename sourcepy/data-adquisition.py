@@ -3,10 +3,11 @@ from adquisition.leaders import get_leaderboard_users
 from adquisition.cw_data_adquisition import CWData
 
 # variables
-MAX_USERS = 12002 # modificar
+MAX_USERS = 13000 # modificar
 OUTPUT_FILE_PATH = './output/codewar_users.csv'
 
 
+# TO DO: mover esta función CWData como método y llamarlo desde el main
 def scan(users_seed=get_leaderboard_users(), 
           seed_path=OUTPUT_FILE_PATH, 
           max_users=MAX_USERS): 
