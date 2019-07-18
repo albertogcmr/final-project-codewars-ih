@@ -3,34 +3,19 @@ from adquisition.leaders import get_leaderboard_users
 from adquisition.cw_data_adquisition import CWData
 
 # variables
-MAX_USERS = 13000 # modificar
+MAX_USERS = 13005 # modificar
 OUTPUT_FILE_PATH = './output/codewar_users.csv'
 
 
 # TO DO: mover esta función CWData como método y llamarlo desde el main
-def scan(users_seed=get_leaderboard_users(), 
-          seed_path=OUTPUT_FILE_PATH, 
-          max_users=MAX_USERS): 
 
-    data = CWData(users_seed=users_seed, seed_path=seed_path, max_users=max_users)
-    while not data.is_complete(): 
-        try: 
-            data.scan_next()
-        except: 
-            print('ha fallado')
-        else: 
-            print(len(data.users_checked), len(data.users_seed), len(data.users_to_check))
-        finally: 
-            if len(data.users_checked) % 100 == 0: 
-                data.save_dataframe()
-                print('salvado DF')
-    data.save_dataframe()
     
 
 
 def main(): 
     top500 = get_leaderboard_users()
-    scan(users_seed=top500, seed_path=OUTPUT_FILE_PATH, max_users=MAX_USERS)
+    data = CWData(users_seed=top500, seed_path=OUTPUT_FILE_PATH, max_users=MAX_USERS)
+    data.scan()
 
 
 if __name__ == "__main__":

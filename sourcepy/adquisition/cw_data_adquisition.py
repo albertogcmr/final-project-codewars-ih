@@ -54,6 +54,21 @@ class CWData:
         else: 
             self.users_to_check = self.users_seed
 
+
+    def scan(self):         
+        while not self.is_complete(): 
+            try: 
+                self.scan_next()
+            except: 
+                print('ha fallado')
+            else: 
+                print(len(self.users_checked), len(self.users_seed), len(self.users_to_check))
+            finally: 
+                if len(self.users_checked) % 100 == 0: 
+                    self.save_dataframe()
+                    print('salvado DF')
+        self.save_dataframe()
+
 if __name__ == '__main__': 
 
     from leaders import get_leaderboard_users
