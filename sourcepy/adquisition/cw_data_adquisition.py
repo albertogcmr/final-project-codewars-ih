@@ -6,7 +6,7 @@ from .cw_user import CWUser
 
 
 class CWData: 
-    def __init__(self, users_seed=set(), seed_path='./output/codewar_users.csv', max_users=50): 
+    def __init__(self, users_seed=set(), seed_path='./default-output.csv', max_users=0): 
         self.cwuser_list = list() # list of dictionaries
         self.users_checked = set()
         self.users_to_check = set()
@@ -44,15 +44,19 @@ class CWData:
 
     def set_actual_state(self): 
         self.users_to_check = self.users_seed
+
         if os.path.isfile(self.seed_path): 
             df = pd.read_csv(self.seed_path, index_col=0)         # create DF
-            self.cwuser_list.extend(df.to_dict(orient='records')) # get dict from DF
+            self.cwuser_list.extend(df.to_dict(orient='records')) # get list of dict from DF
             self.users_checked.update(list(df.user))              # update users_checked from DF
+            
             for elem in df.social: 
                 self.users_to_check = self.users_to_check.union(string2set(elem))
             self.users_to_check = self.users_to_check - self.users_checked   # update users_to_check from previous data
+        '''
         else: 
             self.users_to_check = self.users_seed
+        '''
 
 
     def scan(self):         
@@ -69,8 +73,8 @@ class CWData:
                     print('salvado DF')
         self.save_dataframe()
 
-if __name__ == '__main__': 
 
+def test1(): 
     from leaders import get_leaderboard_users
     
     seed = get_leaderboard_users()
@@ -84,4 +88,8 @@ if __name__ == '__main__':
         data.scan_next()
         print(len(data.users_checked))
     data.save_dataframe()
+
+if __name__ == '__main__': 
+    test1()
+    
 
