@@ -1,11 +1,14 @@
 # imports
 import pandas as pd
 import os
+
+
+from .leaders import get_leaderboard_users
 from .func_set import string2set
 from .cw_user import CWUser
 
 
-class CWData: 
+class CWDataExtractor: 
     def __init__(self, users_seed=set(), seed_path='./default-output.csv', max_users=0): 
         self.cwuser_list = list() # list of dictionaries
         self.users_checked = set()
@@ -77,10 +80,10 @@ class CWData:
 
 
 def test1(): 
-    from leaders import get_leaderboard_users
+    
     
     seed = get_leaderboard_users()
-    data = CWData(users_seed=seed, max_users=3)
+    data = CWDataExtractor(users_seed=seed, max_users=3)
     data.users_checked
     print(len(data.users_seed))
     print(len(data.users_checked))

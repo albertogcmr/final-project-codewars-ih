@@ -1,7 +1,7 @@
 # imports
+
 from .cw_api import CWApi
 from .cw_scrapin import CWScraper
-
 
 class CWUser(CWApi, CWScraper): 
     def __init__(self, user): 
