@@ -3,7 +3,7 @@ from acquisition.leaders import get_leaderboard_users
 from acquisition.cw_data_adquisition import CWDataExtractor
 
 # variables
-MAX_USERS = 13725 # modificar
+MAX_USERS = 13727 # modificar
 OUTPUT_FILE_PATH = './output/codewar_users.csv' 
 
 
