@@ -22,6 +22,7 @@ class CWData:
         """ Is complete if users has exceded expectations or has no more users in queue """
         users_limit = len(self.users_checked) >= self.max_users
         social_limit = len(self.users_to_check) <= 0
+
         if users_limit: 
             print('users_limit: Max users scanned')
         elif social_limit: 
@@ -35,7 +36,8 @@ class CWData:
         social_users = cwuser.get_all_social()
 
         self.users_checked.add(user)
-        self.users_to_check = self.users_to_check.union(social_users) - self.users_checked
+        self.users_to_check = self.users_to_check.union(social_users) # - self.users_checked
+        # self.users_to_check = self.users_to_check.union(social_users) - self.users_checked
         self.cwuser_list.append(cwuser.all_data)
     
     def save_dataframe(self): 
