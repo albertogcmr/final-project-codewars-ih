@@ -5,6 +5,7 @@ from acquisition.func_set import string2set
 from acquisition.cw_user import CWUser
 from acquisition.cw_api import CWApi
 from acquisition.cw_scrapin import CWScraper
+from acquisition.languages import get_languages
 
 
 def test_CWDataExtractor(): 
@@ -53,11 +54,16 @@ def test_string2set():
     print(res)
     print(type(res))
 
+def test_get_languages(): 
+    langs = get_languages()
+    print(langs)
+
 
 if __name__ == '__main__': 
-    test_string2set()
-    test_CWScraper()
-    test_CWApi()
-    test_CWUser()
-    test_CWDataExtractor()
+    # test_string2set()
+    # test_CWScraper()
+    # test_CWApi()
+    # test_CWUser()
+    # test_CWDataExtractor()
+    test_get_languages()
     

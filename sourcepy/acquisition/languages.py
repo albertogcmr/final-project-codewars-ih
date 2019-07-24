@@ -1,7 +1,6 @@
 # imports
-if __name__ == '__main__': 
-    import requests
-    from bs4 import BeautifulSoup
+import requests
+from bs4 import BeautifulSoup
 
 # definitions
 
