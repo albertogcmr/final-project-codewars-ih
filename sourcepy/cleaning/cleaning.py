@@ -34,13 +34,6 @@ def get_highest_trained(x):
         return res
     except: 
         return x
-    
-def get_honor_percentile(x): 
-    try: 
-        res = x.replace('Top', '').replace('%', '').strip()
-        return float(res)
-    except: 
-        return x
 
 
 def cleaning(df): 
@@ -61,14 +54,11 @@ def cleaning(df):
     # creates new column and delete the previous
     df['avg_satisfaction_rating'] = df['avg_satisfaction_rating'].apply(lambda x: get_numeric_one(x, deletes='%')).fillna(0)
 
-
     # creates new column and delete the previous
-    df['best_practice'] = df['best_practice'].apply(get_numeric_one).fillna(0)
-
+    df['best_practice'] = df['best_practice'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
 
     # creates new column and delete the previous
     df['best_practice_solutions'] = df['best_practice_solutions'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
-
 
     # creates new column and delete the previous
     df['clever_solutions'] = df['clever_solutions'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
@@ -100,15 +90,24 @@ def cleaning(df):
     df["kumite"], df["started_kumite"] = zip(*df["kumite"].map(lambda x: get_numeric_groups(x, groups=2)))
 
     # creates new column and delete the previous
-    df['leaderboard_position'] = df['leaderboard_position'].apply(lambda x: get_numeric_one(x, deletes='#')).fillna(0)
+    df['leaderboard_position'] = df['leaderboard_position'].apply(lambda x: get_numeric_one(x, deletes='#,')).fillna(0)
 
     # creates new column and delete the previous
     df['rank'] = df['rank'].apply(lambda x: get_numeric_one(x, deletes='kyudan')).fillna(0)
 
     # creates new column and delete the previous
-    df['total_collected'] = df['total_collected'].apply(get_numeric_one).fillna(0)
+    df['total_collected'] = df['total_collected'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
+
+    # creates new column and delete the previous
+    df['total_completed_kata'] = df['total_completed_kata'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
+
+    # creates new column and delete the previous
+    df['total_completions'] = df['total_completions'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
+
+    # creates new column and delete the previous
+    df['total_stars'] = df['total_stars'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
 
     # creates two new columns and delete the previous
     df["translations"], df["translations_aproved"] = zip(*df["translations"].map(lambda x: get_numeric_groups(x, groups=2)))
-
+    
     return df
