@@ -1,6 +1,5 @@
 # imports 
 
-import pandas as pd
 from cleaning.cleaning import CWDataCleaner
 
 INPUT_FILE_PATH = './output/codewar_users.csv' 

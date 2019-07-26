@@ -35,20 +35,19 @@ def get_highest_trained(x):
     except: 
         return x
 
-'''
-self.df['date'] = pd.to_datetime(self.df['date'])
-self.df['ended_on'] = pd.to_datetime(self.df['ended_on'])
-self.df['first_completed'] = pd.to_datetime(self.df['first_completed'])
-self.df['last_completed'] = pd.to_datetime(self.df['last_completed'])
-self.df['last_seen'] = pd.to_datetime(self.df['last_seen'])
-self.df['member_since'] = pd.to_datetime(self.df['member_since'])
-
-['date', 'ended_on', 'first_completed', 'last_completed', 'last_seen', 'member_since']
-'''
 def columns_to_datetime(df, columns=[]): 
-    columns = ['date', 'ended_on', 'first_completed', 'last_completed', 'last_seen', 'member_since']
     for col in columns: 
         df[col] = pd.to_datetime(df[col])
+    return df
+
+def single_columns_to_numeric(df, dictionary=dict()): 
+    for column, erase in dictionary.items(): 
+        df[column] = df[column].apply(lambda x: get_numeric_one(x, deletes=erase)).fillna(0)
+    return df
+
+def two_columns_from_one(df, dictionary=dict()): 
+    for column_one, column_two in dictionary.items(): 
+        df[column_one], df[column_two] = zip(*df[column_one].map(lambda x: get_numeric_groups(x, groups=2)))
     return df
 
 
@@ -74,70 +73,14 @@ class CWDataCleaner:
         # replace nan in numeric colmuns with 0
         self.df._get_numeric_data().fillna(0, inplace=True)
 
-        # creates two new columns and delete the previous
-        self.df["authored_translations"], self.df["approved_translations"] = zip(*self.df["authored_translations"].map(lambda x: get_numeric_groups(x, groups=2)))
-
-        # creates new column and delete the previous
-        self.df['avg_satisfaction_rating'] = self.df['avg_satisfaction_rating'].apply(lambda x: get_numeric_one(x, deletes='%')).fillna(0)
-
-        # creates two new columns and delete the previous
-        self.df["comments"], self.df["replies"] = zip(*self.df["comments"].map(lambda x: get_numeric_groups(x, groups=2)))
-
-        # creates two new columns and delete the previous
-        self.df["translations"], self.df["translations_aproved"] = zip(*self.df["translations"].map(lambda x: get_numeric_groups(x, groups=2)))
-
-        # creates two new columns and delete the previous
-        self.df["created"], self.df["beta"] = zip(*self.df["created"].map(lambda x: get_numeric_groups(x, groups=2)))
-
-        # creates two new columns and delete the previous
-        self.df["kumite"], self.df["started_kumite"] = zip(*self.df["kumite"].map(lambda x: get_numeric_groups(x, groups=2)))
-
-        ####################### simples ########################
-        # creates new column and delete the previous
-        self.df['avg_rank'] = self.df['avg_rank'].apply(lambda x: get_numeric_one(x, deletes='kyudan')).fillna(0)
-
-
-        # creates new column and delete the previous
-        self.df['best_practice'] = self.df['best_practice'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
-
-        # creates new column and delete the previous
-        self.df['best_practice_solutions'] = self.df['best_practice_solutions'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
-
-        # creates new column and delete the previous
-        self.df['clever_solutions'] = self.df['clever_solutions'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
-
-
-        # creates new column and delete the previous
-        self.df['highest_trained'] = self.df['highest_trained'].apply(get_highest_trained)
-
-        # creates new column and delete the previous
-        self.df['honor'] = self.df['honor'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
-
-        # creates new column and delete the previous
-        self.df['honor_percentile'] = self.df['honor_percentile'].apply(lambda x: get_numeric_one(x, deletes='Top%')).fillna(0)
-
-
-        # creates new column and delete the previous
-        self.df['leaderboard_position'] = self.df['leaderboard_position'].apply(lambda x: get_numeric_one(x, deletes='#,')).fillna(0)
-
-        # creates new column and delete the previous
-        self.df['rank'] = self.df['rank'].apply(lambda x: get_numeric_one(x, deletes='kyudan')).fillna(0)
-
-        # creates new column and delete the previous
-        self.df['total_collected'] = self.df['total_collected'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
-
-        # creates new column and delete the previous
-        self.df['total_completed_kata'] = self.df['total_completed_kata'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
-
-        # creates new column and delete the previous
-        self.df['total_completions'] = self.df['total_completions'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
-
-        # creates new column and delete the previous
-        self.df['total_stars'] = self.df['total_stars'].apply(lambda x: get_numeric_one(x, deletes=',')).fillna(0)
-
-        # cleans dates column
-        columns = ['date', 'ended_on', 'first_completed', 'last_completed', 'last_seen', 'member_since']
-        self.df = columns_to_datetime(self.df, columns=columns)
+        dictionary_one_two = {
+            "authored_translations": "approved_translations", 
+            "comments": "replies", 
+            "translations": "translations_aproved", 
+            "created": "beta", 
+            "kumite": "started_kumite"
+        }
+        self.df = two_columns_from_one(self.df, dictionary=dictionary_one_two)
 
         columns_deletes_dictionary = {
             'total_stars': ',', 
@@ -154,7 +97,12 @@ class CWDataCleaner:
             'best_practice_solutions': ',', 
             'best_practice': ',', 
             'avg_rank': 'kyudan', 
-            'highest_trained': '', 
-            'highest_trained': '', 
-
+            'avg_satisfaction_rating': '%'
         }
+        self.df = single_columns_to_numeric(self.df, dictionary=columns_deletes_dictionary)
+
+        # cleans dates column
+        columns = ['date', 'ended_on', 'first_completed', 'last_completed', 'last_seen', 'member_since']
+        self.df = columns_to_datetime(self.df, columns=columns)
+
+        
