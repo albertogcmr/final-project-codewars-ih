@@ -1,16 +1,17 @@
 # imports 
 
 import pandas as pd
-from cleaning.cleaning import cleaning
+from cleaning.cleaning import CWDataCleaner
 
 INPUT_FILE_PATH = './output/codewar_users.csv' 
 OUTPUT_FILE_PATH = './output/codewar_users_clean.csv' 
 
 
 def main(): 
-    df = pd.read_csv(INPUT_FILE_PATH, index_col=0)
-    df = cleaning(df)
-    df.to_csv(OUTPUT_FILE_PATH)
+    cleaner = CWDataCleaner(input_file_path=INPUT_FILE_PATH, output_file_path=OUTPUT_FILE_PATH)
+    cleaner.load_file()
+    cleaner.clean()
+    cleaner.save_file() 
 
 
 if __name__ == "__main__":
