@@ -3,21 +3,11 @@ Proyecto final del bootcamp de ironhack en Data Analytics
 
 Sistema de recomendación para recruiters obteniendo datos de webs como codewars y github. 
 
-## Fase 1: Obtención de usuarios de forma iterativa
+## Fase 1-2-3: Obtención de datos de usuarios de Codewers
 
-1. Haciendo web scrapping de la página de los top 500 en Codewars obtenemos sus usuarios y los incluimos en la lista de usuarios de codewars. 
-2. Haciendo web scrapping de cada usuario de la lista obtenemos sus contactos sociales (following, followers, allies)
-3. Añadimos estos nuevos contactos a muestra lista de usuarios de codewars. 
-4. Repetimos paso 2 y 3 hasta obtener un número de registros de +5000. 
-5. Alcanzamos los 11528 usuarios en solo 2 iteraciones: 500, 3939, 11528. 
-
-### Tiempos: 
-Iter	users	timeit(ms)
-1	500	3847.40
-2	3939	7642800.01
-3	11520	11027477.05
-
-## Fase 2: Obtención de datos de usuario
+1. A partir de una primera semilla que son el top 500 (leaderboard) en Codewars obtenemos sus sus contactos sociales (following, followers, allies)
+2. Añadimos estos nuevos contactos a muestro conjunto de usuarios de codewars. 
+3. Repetimos este procedimiento hasta alcanzar los 20000 usuarios. 
 
 Ejecutamos la siguiente linea de comandos: 
 ```console
@@ -25,11 +15,48 @@ $ python3 sourcepy/data-adquisition.py
 ```
 Cada 100 usuarios se persisten los datos. 
 
+## Fase 4: Limpieza de los datos
+
+Un pipeline para limpiar los datos. 
+
+Ejecutamos la siguiente linea de comandos: 
+```console
+$ python3 sourcepy/data-cleaning.py
+```
+
+## Fase 5: Análisis de datos. ML - > TO DO
+
+Un pipeline para analizar los datos y reportar resultados
+
+Ejecutamos la siguiente linea de comandos: 
+```console
+$ python3 sourcepy/data-analysis.py
+```
+
+## Fase 6: Representación de datos. BI -> TO DO
+
+Un pipeline para representar los datos y persistirlos en imágenes o similar. 
+
+Ejecutamos la siguiente linea de comandos: 
+```console
+$ python3 sourcepy/data-representation.py
+```
+
+## Fase 7: Sistema de Recomendación -> TO DO
+
+Un pipeline para representar los datos y persistirlos en imágenes o similar. 
+
+Ejecutamos la siguiente linea de comandos: 
+```console
+$ python3 sourcepy/recomender-system.py -l "python, java, c"
+```
+
+
 ### 2.1 API codewars
 Sobre cada uno de los usuarios de la lista hacemos una petición a la API (https://dev.codewars.com/):
 ```$curl "https://www.codewars.com/api/v1/users/some_user"```
 Y obtenemos un json de la forma: 
-```
+```python
 {
     "username": "some_user",
     "name": "Some Person",
@@ -153,6 +180,7 @@ En esta fase analizaremos los datos con las herramientas conocidas y provaremos 
 ### 5.3 Unsupervised Learning
 
 ### Mejoras y seguiento
+
 https://github.com/Mihlos/api-heroku
 poner __init__.py en todas las carpetas con código para que se puedan comunicar las partes
 

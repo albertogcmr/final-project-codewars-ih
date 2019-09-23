@@ -87,7 +87,6 @@ class CWDataCleaner:
             'total_completions': ',', 
             'total_completed_kata': ',', 
             'total_collected': ',', 
-            'total_collected': ',', 
             'rank': 'kyudan', 
             'leaderboard_position': '#,', 
             'honor_percentile': 'Top%', 
