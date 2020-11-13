@@ -2448,7 +2448,6 @@
  7368  mncl                                                https://github.com/embrah
 11179  Eliv
  9293  Smistrato
- 3780  spb2445                                             https://github.com/spb2445                         https://www.linkedin.com/in/steve-bosilovatz/
  5952  bcooke84                                            https://github.com/bcooke84
  1939  chomolungma
  8208  Dorteel                                             https://github.com/dorteel
